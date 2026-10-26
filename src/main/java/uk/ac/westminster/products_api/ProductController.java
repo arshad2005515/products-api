@@ -20,11 +20,19 @@ public class ProductController {
     public Product getProductById(@PathVariable Long id) {return productService.getProductById(id).orElse(null);}
 
     @PostMapping()
-    public Product addProduct(@RequestBody Product product) {return productService.addProduct(product);}
+    public Product addProduct(@RequestBody DigitalProduct product) {return productService.addProduct(product);}
+    // Temporary fix: Jackson cannot deserialize abstract Product class from JSON directly.
 
     @DeleteMapping("/{id}")
     public String deleteProductById(@PathVariable Long id) {return productService.deleteProductById(id);}
 
     @GetMapping("/search")
     public List<Product> search(@RequestParam String name) {return productService.findByName(name);}
+
+    @GetMapping("/summaries")
+    public List<String> getSummaries() {return productService.getAllProductSummaries();}
+
+
 }
+
+

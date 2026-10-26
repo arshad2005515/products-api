@@ -47,6 +47,11 @@ public class ProductService  {
         return products.stream()
                 .filter(p -> p.getName().contains(name)).toList();
     }
+
+    public List<String> getAllProductSummaries() {
+        return products.stream()
+                .map(p ->p.getSummary()).toList();
+    }
     }
 
 
